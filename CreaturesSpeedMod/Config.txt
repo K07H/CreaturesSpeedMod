@@ -1,6 +1,6 @@
 ﻿# The lines below defines the speed multipliers that will be applied to creatures.
-# Possible values: Any digit superior to 0 and inferior to 20.
 # For example setting the value to 0.5 will lower creature speed by two, and setting the value to 3.0 will increase creature speed by three.
+# Possible values: Any digit superior to 0 and inferior to 20.
 BiterMultiplier=1.0
 BladderfishMultiplier=1.0
 BleederMultiplier=1.0
@@ -50,5 +50,7 @@ WarperMultiplier=1.0
 
 
 # The line below defines the speed multiplier that will be applied to the creature if the creature type is unknown.
+# Warning: It is not recommended to modify this value.
 # Possible values: Any digit superior to 0 and inferior to 20.
 FallbackMultiplier=1.0
+
