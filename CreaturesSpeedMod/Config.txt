@@ -53,4 +53,3 @@ WarperMultiplier=1.0
 # Warning: It is not recommended to modify this value.
 # Possible values: Any digit superior to 0 and inferior to 20.
 FallbackMultiplier=1.0
-
