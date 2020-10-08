@@ -188,7 +188,7 @@ namespace CreaturesSpeedMod
                 if (c.SwimRandom == __instance && c.TechTypeHash == techTypeHash)
                     return;
             _creaturesSpeeds.Add(new CreatureSpeedConfig(__instance, techTypeHash, __instance.swimVelocity));
-            __instance.swimVelocity *= GetSpeedMultiplierFromTechTypeHash(techTypeHash); //_speedMultiplier;
+            __instance.swimVelocity *= GetSpeedMultiplierFromTechTypeHash(techTypeHash);
         }
 
         #endregion
