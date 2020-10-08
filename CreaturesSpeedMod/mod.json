@@ -3,7 +3,6 @@
   "DisplayName": "CreaturesSpeedMod",
   "Author": "OSubMarin",
   "Version": "1.0.0",
-  "Requires": [ "0Harmony.dll" ],
   "Enable": true,
   "Game": "Subnautica",
   "AssemblyName": "CreaturesSpeedMod.dll",
