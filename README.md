@@ -17,4 +17,4 @@ If not done already, download and install **QModManager** ([QModManager](https:/
 
 ## Configuration instructions:
 Simply edit the **Config** text file to tweak creatures speeds.<br>
-*(By default it will be located at **C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\CreaturesSpeedMod\Config.txt** for Subnautica and **C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\CreaturesSpeedMod\Config.txt** for Below Zero)*
+*(By default it will be located at **C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\CreaturesSpeedMod\Config.txt** for Subnautica and **C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\CreaturesSpeedMod\Config.txt** for Below Zero).*
