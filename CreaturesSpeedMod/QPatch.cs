@@ -182,7 +182,7 @@ namespace CreaturesSpeedMod
             }
         }
 
-		public static void Perform_Prefix(SwimRandom __instance, Creature creature, float deltaTime) //public override void Perform(Creature creature, float deltaTime)
+        public static void Perform_Prefix(SwimRandom __instance, Creature creature, float deltaTime) //public override void Perform(Creature creature, float deltaTime)
         {
             long techTypeHash = creature.GetTechTypeHash();
             foreach (CreatureSpeedConfig c in _creaturesSpeeds)
@@ -190,7 +190,7 @@ namespace CreaturesSpeedMod
                     return;
             _creaturesSpeeds.Add(new CreatureSpeedConfig(__instance, techTypeHash, __instance.swimVelocity));
             __instance.swimVelocity *= GetSpeedMultiplierFromTechTypeHash(techTypeHash); //_speedMultiplier;
-		}
+        }
 
         #endregion
 
