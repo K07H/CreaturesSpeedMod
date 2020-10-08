@@ -11,7 +11,7 @@ If not done already, download and install **QModManager** ([QModManager](https:/
 ## Installation instructions:
 1) Download the mod archive ([CreaturesSpeedMod.zip](https://github.com/K07H/CreaturesSpeedMod/releases/download/1.1.0/CreaturesSpeedMod.zip) for Subnautica or [CreaturesSpeedModBZ.zip](https://github.com/K07H/CreaturesSpeedMod/releases/download/1.1.0/CreaturesSpeedModBZ.zip) for Below Zero).
 2) Extract the mod folder from the archive.
-3) Move the mod folder inside your **QMods** folder *(by default it is located in **C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods** for Subnautica, and in **C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods** for BelowZero)*.
+3) Move the mod folder inside your **QMods** folder *(by default in **C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods** for Subnautica, and **C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods** for BelowZero)*.
 
 <br>
 
