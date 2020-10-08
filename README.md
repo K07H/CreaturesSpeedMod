@@ -4,7 +4,7 @@ A mod for Subnautica and Subnautica Below Zero which allows to tweak creatures m
 <br>
 
 ## Requirements:
-Requires **QModManager** ([QModManager](https://www.nexusmods.com/subnautica/mods/201) for Subnautica or [QModManager BZ](https://www.nexusmods.com/subnauticabelowzero/mods/1) for Below Zero).
+This mod requires **QModManager** ([QModManager](https://www.nexusmods.com/subnautica/mods/201) for Subnautica or [QModManager BZ](https://www.nexusmods.com/subnauticabelowzero/mods/1) for Below Zero).
 
 <br>
 
