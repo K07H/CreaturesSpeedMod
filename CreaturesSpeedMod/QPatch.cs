@@ -109,7 +109,6 @@ namespace CreaturesSpeedMod
         {
             if (_allTechTypes == null)
             {
-                Log("DEBUG: seaemperorjuvenile tt=[" + TechType.SeaEmperorJuvenile.AsString(false) + "] hash=[" + UWE.Utils.SDBMHash(TechType.SeaEmperorJuvenile.AsString(false)).ToString(CultureInfo.InvariantCulture) + "]");
                 Log("DEBUG: Init techtypes dictionary");
                 _allTechTypes = new Dictionary<long, TechType>();
                 IEnumerable<TechType> tts = Enum.GetValues(typeof(TechType)).Cast<TechType>();
