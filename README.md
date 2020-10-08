@@ -16,4 +16,4 @@ If not done already, download and install **QModManager** (either [QModManager f
 <br>
 
 ## Configuration instructions:
-Simply edit the **Config** text file to tweak creatures speeds (it is inside the mod folder, in **QMods**).
+Simply edit the **Config** text file to tweak creatures speeds (it is inside the mod folder).
