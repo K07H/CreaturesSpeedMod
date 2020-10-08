@@ -7,5 +7,6 @@ A mod for Subnautica and Subnautica Below Zero which allows to tweak creatures m
 2) Extract the mod folder from the archive.
 3) Move the mod folder inside your **QMods** folder.
 
+
 ## Configuration instructions:
 Simply edit the **Config** text file to tweak creatures speeds (it is inside the mod folder, in **QMods**).
