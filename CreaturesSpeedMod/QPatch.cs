@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+#if DEBUG
 using System.Linq;
+#endif
 using System.Reflection;
 using System.Text;
 using UnityEngine;
