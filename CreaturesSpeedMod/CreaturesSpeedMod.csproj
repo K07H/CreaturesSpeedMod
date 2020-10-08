@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugSN|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -21,19 +21,50 @@
     <DefineConstants>DEBUG;TRACE;SUBNAUTICA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
     <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
     <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
     <BepInExDir>$(SubnauticaDir)\BepInEx</BepInExDir>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseSN|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>SUBNAUTICA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>2</WarningLevel>
+    <LangVersion>7.1</LangVersion>
     <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
     <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
+    <BepInExDir>$(SubnauticaDir)\BepInEx</BepInExDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugBZ|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\DebugBZ\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;BELOWZERO</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero</SubnauticaDir>
+    <Dependencies>$(SubnauticaDir)\SubnauticaZero_Data\Managed</Dependencies>
+    <BepInExDir>$(SubnauticaDir)\BepInEx</BepInExDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseBZ|AnyCPU'">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\ReleaseBZ\</OutputPath>
+    <DefineConstants>BELOWZERO</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>2</WarningLevel>
+    <LangVersion>7.1</LangVersion>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero</SubnauticaDir>
+    <Dependencies>$(SubnauticaDir)\SubnauticaZero_Data\Managed</Dependencies>
     <BepInExDir>$(SubnauticaDir)\BepInEx</BepInExDir>
   </PropertyGroup>
   <ItemGroup>
@@ -67,15 +98,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="mod.json" />
+    <None Include="modBZ.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config.txt" />
+    <Content Include="ConfigBZ.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo ------ Creatures Speed Mod compiled successfully.
 SET ZIPLOC=C:\Program Files\7-Zip\7z.exe
 SET MODNAME=CreaturesSpeedMod
+IF $(ConfigurationName) == DebugBZ (
+SET MODNAME=CreaturesSpeedModBZ
+)
+IF $(ConfigurationName) == ReleaseBZ (
+SET MODNAME=CreaturesSpeedModBZ
+)
 SET OUTPUTDIR=$(TargetDir)%25MODNAME%25\
 SET OUTPUTFILE=$(TargetDir)%25MODNAME%25.zip
 IF EXIST "%25ZIPLOC%25" (
@@ -88,7 +127,7 @@ IF EXIST "%25OUTPUTFILE%25" (
 DEL /F /Q "%25OUTPUTFILE%25"
 )
 )
-IF $(ConfigurationName) == Release (
+IF $(ConfigurationName) == ReleaseSN (
 IF EXIST "%25ZIPLOC%25" (
 echo ------ Publishing Creatures Speed Mod to "%25OUTPUTFILE%25"...
 MKDIR "%25OUTPUTDIR%25"
@@ -100,15 +139,75 @@ RMDIR /S /Q "%25OUTPUTDIR%25"
 echo ------ Creatures Speed Mod successfully published to "%25OUTPUTFILE%25".
 )
 )
-SET CREATURESSPEEDMODPATH=$(SubnauticaDir)\QMods\CreaturesSpeedMod\
+IF $(ConfigurationName) == ReleaseBZ (
+IF EXIST "%25ZIPLOC%25" (
+echo ------ Publishing Creatures Speed Mod to "%25OUTPUTFILE%25"...
+MKDIR "%25OUTPUTDIR%25"
+XCOPY "$(TargetDir)CreaturesSpeedMod.dll" "%25OUTPUTDIR%25" /Y
+XCOPY "$(ProjectDir)modBZ.json" "%25OUTPUTDIR%25" /Y
+XCOPY "$(ProjectDir)ConfigBZ.txt" "%25OUTPUTDIR%25" /Y
+IF EXIST "%25OUTPUTDIR%25mod.json" (
+DEL /F /Q "%25OUTPUTDIR%25mod.json"
+)
+IF EXIST "%25OUTPUTDIR%25Config.txt" (
+DEL /F /Q "%25OUTPUTDIR%25Config.txt"
+)
+REN "%25OUTPUTDIR%25modBZ.json" "mod.json"
+REN "%25OUTPUTDIR%25ConfigBZ.txt" "Config.txt"
+"%25ZIPLOC%25" a -tzip "%25OUTPUTFILE%25" "%25OUTPUTDIR%25"
+RMDIR /S /Q "%25OUTPUTDIR%25"
+echo ------ Creatures Speed Mod successfully published to "%25OUTPUTFILE%25".
+)
+)
+SET CREATURESSPEEDMODPATH=$(SubnauticaDir)\QMods\%25MODNAME%25\
 IF EXIST "%25CREATURESSPEEDMODPATH%25" (
 echo ------ Deploying Creatures Speed Mod to "%25CREATURESSPEEDMODPATH%25"...
 echo ------ Copying "$(TargetPath)" to "%25CREATURESSPEEDMODPATH%25"...
 xcopy "$(TargetPath)" "%25CREATURESSPEEDMODPATH%25" /Y
+IF $(ConfigurationName) == DebugSN (
 echo ------ Copying "$(ProjectDir)mod.json" to "%25CREATURESSPEEDMODPATH%25"...
 xcopy "$(ProjectDir)mod.json" "%25CREATURESSPEEDMODPATH%25" /Y
 echo ------ Copying "$(ProjectDir)Config.txt" to "%25CREATURESSPEEDMODPATH%25"...
 xcopy "$(ProjectDir)Config.txt" "%25CREATURESSPEEDMODPATH%25" /Y
+)
+IF $(ConfigurationName) == ReleaseSN (
+echo ------ Copying "$(ProjectDir)mod.json" to "%25CREATURESSPEEDMODPATH%25"...
+xcopy "$(ProjectDir)mod.json" "%25CREATURESSPEEDMODPATH%25" /Y
+echo ------ Copying "$(ProjectDir)Config.txt" to "%25CREATURESSPEEDMODPATH%25"...
+xcopy "$(ProjectDir)Config.txt" "%25CREATURESSPEEDMODPATH%25" /Y
+)
+IF $(ConfigurationName) == DebugBZ (
+echo ------ Copying "$(ProjectDir)modBZ.json" to "%25CREATURESSPEEDMODPATH%25"...
+xcopy "$(ProjectDir)modBZ.json" "%25CREATURESSPEEDMODPATH%25" /Y
+echo ------ Copying "$(ProjectDir)ConfigBZ.txt" to "%25CREATURESSPEEDMODPATH%25"...
+xcopy "$(ProjectDir)ConfigBZ.txt" "%25CREATURESSPEEDMODPATH%25" /Y
+echo ------ Renaming "%25CREATURESSPEEDMODPATH%25modBZ.json" to "mod.json"...
+IF EXIST "%25CREATURESSPEEDMODPATH%25mod.json" (
+DEL /F /Q "%25CREATURESSPEEDMODPATH%25mod.json"
+)
+REN "%25CREATURESSPEEDMODPATH%25modBZ.json" "mod.json"
+echo ------ Renaming "%25CREATURESSPEEDMODPATH%25ConfigBZ.txt" to "Config.txt"...
+IF EXIST "%25CREATURESSPEEDMODPATH%25Config.txt" (
+DEL /F /Q "%25CREATURESSPEEDMODPATH%25Config.txt"
+)
+REN "%25CREATURESSPEEDMODPATH%25ConfigBZ.txt" "Config.txt"
+)
+IF $(ConfigurationName) == ReleaseBZ (
+echo ------ Copying "$(ProjectDir)modBZ.json" to "%25CREATURESSPEEDMODPATH%25"...
+xcopy "$(ProjectDir)modBZ.json" "%25CREATURESSPEEDMODPATH%25" /Y
+echo ------ Copying "$(ProjectDir)ConfigBZ.txt" to "%25CREATURESSPEEDMODPATH%25"...
+xcopy "$(ProjectDir)ConfigBZ.txt" "%25CREATURESSPEEDMODPATH%25" /Y
+echo ------ Renaming "%25CREATURESSPEEDMODPATH%25modBZ.json" to "mod.json"...
+IF EXIST "%25CREATURESSPEEDMODPATH%25mod.json" (
+DEL /F /Q "%25CREATURESSPEEDMODPATH%25mod.json"
+)
+REN "%25CREATURESSPEEDMODPATH%25modBZ.json" "mod.json"
+echo ------ Renaming "%25CREATURESSPEEDMODPATH%25ConfigBZ.txt" to "Config.txt"...
+IF EXIST "%25CREATURESSPEEDMODPATH%25Config.txt" (
+DEL /F /Q "%25CREATURESSPEEDMODPATH%25Config.txt"
+)
+REN "%25CREATURESSPEEDMODPATH%25ConfigBZ.txt" "Config.txt"
+)
 echo ------ Creatures Speed Mod has been deployed to "%25CREATURESSPEEDMODPATH%25".
 )</PostBuildEvent>
   </PropertyGroup>

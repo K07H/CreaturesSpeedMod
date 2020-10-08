@@ -4,7 +4,7 @@
   "Author": "OSubMarin",
   "Version": "1.1.0",
   "Enable": true,
-  "Game": "Subnautica",
+  "Game": "BelowZero",
   "AssemblyName": "CreaturesSpeedMod.dll",
   "EntryMethod": "CreaturesSpeedMod.QPatch.Patch"
 }
